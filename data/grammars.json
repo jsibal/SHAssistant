@@ -1,0 +1,207 @@
+{
+  "ACTION": {
+    "on": [
+      "rozsviť",
+      "rozsvit",
+      "zapnout",
+      "zapní",
+      "zapný",
+      "zapni",
+      "zapny",
+      "zapnutí"
+    ],
+    "off": [
+      "vybní",
+      "vypnout",
+      "zhasnout",
+      "vypni",
+      "vybni",
+      "vypní",
+      "vypnutí",
+      "zhasni"
+    ],
+    "set": ["nastav", "dej", "přepni na"],
+    "end": ["ukončit", "skonči", "konec"],
+    "back": ["vrátit", "nazpět", "zpět", "vrátit se"],
+    "cancel": [
+      "zruš",
+      "zahodit",
+      "nech být",
+      "zrušit",
+      "ukonči akci",
+      "cancel",
+      "stop",
+      "zahoď"
+    ],
+    "start": ["start", "ok domove", "zapni poslech", "začínáme"]
+  },
+  "BOOL_RESPONSE": {
+    "true": [
+      "správně",
+      "určitě",
+      "ok",
+      "ano",
+      "presně",
+      "potvrzuju",
+      "potvrzuji",
+      "chci",
+      "jo",
+      "potvrdit"
+    ],
+    "false": ["vůbec", "nechci", "ne", "zamítnout"]
+  },
+  "TEMPERATURE": {
+    "15": ["15", "patnáct"],
+    "16": ["šestnáct", "16"],
+    "17": ["17", "sedmnáct"],
+    "18": ["osmnáct", "18"],
+    "19": ["19", "devatenáct"],
+    "20": ["dvacet", "20"],
+    "21": ["21", "jedenadvacet", "jedna a dvacet", "dvacet jedna"],
+    "22": ["22", "dvaadvacet", "dvacet dva", "dva a dvacet"],
+    "23": ["23", "dvacet tři", "třiadvacet", "tři a dvacet"],
+    "24": ["24", "čtyři a dvacet", "čtyřiadvacet", "dvacet čtyři"],
+    "25": ["dvacet pět", "pět a dvacet", "25", "pětadvacet"],
+    "26": ["26", "šestadvacet", "šest a dvacet", "dvacet šest"],
+    "27": ["sedm a dvacet", "27", "sedmadvacet", "dvacet sedm"],
+    "28": ["osmadevadesát", "28", "dvacet osm", "osm a dvacet"],
+    "29": ["devět a dvacet", "dvacet devět", "devětadvacet", "29"],
+    "30": ["třicet", "30"]
+  },
+  "BRIGHTNESS": {
+    "50": [
+      "tlumené",
+      "nízký",
+      "méně",
+      "trochu",
+      "50",
+      "padesát",
+      "málo",
+      "nízká",
+      "ztlum"
+    ],
+    "100": ["normální", "100", "střední"],
+    "170": ["vysoký", "hodně", "jasněji", "silný", "170", "jasné"],
+    "255": [
+      "plný",
+      "naplno",
+      "255",
+      "velmi vysoký",
+      "maximum",
+      "co nejvíc",
+      "max",
+      "maximálně"
+    ]
+  },
+  "COLOR": {
+    "red": ["červeně", "červene", "červené", "červena", "červená", "červený"],
+    "green": ["zelený", "zelená", "zeleně", "zelené", "zelene", "zelena"],
+    "blue": [
+      "modrá",
+      "modrý",
+      "modra",
+      "modravá",
+      "modre",
+      "modré",
+      "modrou",
+      "modře"
+    ],
+    "white": ["bíla", "bílá", "bílé", "bílý", "byla"],
+    "yellow": ["žlutě", "žluté", "žlutý", "žluta", "žlute", "žlutá"],
+    "purple": [
+      "fialové",
+      "fialově",
+      "fialova",
+      "fialová",
+      "fialový",
+      "fialove"
+    ],
+    "orange": [
+      "oranžový",
+      "oranžove",
+      "oranžové",
+      "oranžová",
+      "oranžově",
+      "oranžova"
+    ],
+    "pink": [
+      "růžové",
+      "sytě růžová",
+      "růžový",
+      "světle růžová",
+      "růžova",
+      "růžová"
+    ],
+    "cyan": [
+      "azurová",
+      "cyanová",
+      "tyrkysová",
+      "do tyrkysova",
+      "světle modrozelená"
+    ],
+    "warmwhite": [
+      "žlutobílá",
+      "útulné světlo",
+      "žluto bílé",
+      "teplá barva",
+      "teplá bílá",
+      "teplé světlo",
+      "žluto bílá"
+    ],
+    "coldwhite": [
+      "studené světlo",
+      "chladná bílá",
+      "modrobílá",
+      "modrobílé",
+      "chladná barva",
+      "studená bílá"
+    ]
+  },
+  "QUERY_TYPE": {
+    "temperature": [
+      "jaka je teplota",
+      "jake teplo je",
+      "jaká je teplota",
+      "jak teplo je",
+      "kolik je stupňů",
+      "jaké teplo je"
+    ],
+    "state": ["je zapnuto", "je zapnuté", "funguje", "svítí", "je vypnuto"],
+    "brightness": ["jak moc svítí", "intenzita", "jak silné", "jaký je jas"],
+    "color": ["jakou má barvu", "jaká je barva", "barevné světlo", "jak svítí"]
+  },
+  "TARGET": {
+    "query": ["zeptat"],
+    "light": [
+      "rozsviť",
+      "rozsvit",
+      "zhasnout",
+      "osvětlení",
+      "rozsvítit",
+      "světlo",
+      "lampu",
+      "zhasni",
+      "barvu",
+      "jas"
+    ],
+    "climate": [
+      "topit",
+      "topení",
+      "kotel",
+      "klimatizace",
+      "nastavit stupně",
+      "chlazení",
+      "radiátor",
+      "teplota"
+    ],
+    "scene": [
+      "zapni režim",
+      "mód",
+      "aktivuj",
+      "režim",
+      "scéna",
+      "přepni režim",
+      "aktivuj scénu"
+    ]
+  }
+}

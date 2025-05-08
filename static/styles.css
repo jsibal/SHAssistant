@@ -1,0 +1,558 @@
+html,
+
+/* Definice proměnných */
+:root {
+  --primary-color: #44739e;
+  /* --primary-color:#f1c232; */
+  --secondary-color: #0056b3; /* Doplňková barva */
+  --text-color: #ffffff; /* Barva textu */
+  --chat-bubble: #d6d8d8;
+  --background: #363636;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: "Roboto", Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: var(--background);
+  color: var(--primary-color);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--primary-color);
+}
+
+.navbar ul {
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar a {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 15px;
+}
+.navbar .nava:hover {
+  background-color: var(--secondary-color);
+}
+.navbar li {
+  margin-right: 5px;
+}
+
+#log {
+  max-height: 300px;
+  max-width: 90%;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: transparent;
+  font-size: 14px;
+  border-radius: 6px;
+  position: relative;
+  padding: 20px 20px 20px 20px;
+  margin: 10px auto;
+  width: 90%;
+  border: 4px solid var(--primary-color);
+  border-radius: 12px;
+}
+
+/*        Chat        */
+/*======================*/
+.chat-window-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5%;
+  height: 80wh;
+  padding: 20px;
+}
+
+.chat-window {
+  width: 80%;
+  max-width: 1000px;
+  height: 400px;
+  min-height: 40vh;
+  max-height: 500px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header {
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.chat-footer {
+  display: flex;
+  padding: 10px;
+}
+
+.chat-footer input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.chat-footer button {
+  padding: 10px 20px;
+  margin-left: 5px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.chat-footer button:hover {
+  background-color: var(--secondary-color);
+}
+
+.chat-message.user {
+  text-align: right;
+  color: var(--primary-color);
+  margin-left: auto;
+}
+
+.chat-message.bot {
+  text-align: left;
+  color: var(--secondary-color);
+  margin-right: auto;
+  padding: 3px;
+}
+.chat-bubble {
+  background-color: var(--primary-color);
+
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 70%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+/* Různá pozice a barva pro user/bot */
+.chat-message.user .chat-bubble {
+  background-color: var(--chat-bubble);
+  align-self: flex-end;
+}
+
+.chat-message.bot .chat-bubble {
+  background-color: var(--chat-bubble);
+  align-self: flex-start;
+}
+.chat-message.system {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.control-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  padding: 15px;
+  border: 4px solid var(--primary-color);
+  border-radius: 12px;
+  background-color: transparent;
+}
+
+.top-row-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.control-buttons button {
+  padding: 20px 2Opx;
+  font-size: 20px;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.control-buttons button i {
+  font-size: 22px;
+}
+
+@media (max-width: 768px) {
+  .chat-window-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .recog {
+    order: -1;
+    width: 100px;
+    height: 100px;
+  }
+
+  .chat-window {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.light-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+button {
+  background-color: rgb(68, 115, 158);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+input[type="color"] {
+  width: 50px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.light-control-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  padding: 20px;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+}
+
+.light-control {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 2px solid var(--primary-color);
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 300px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.light-control .top-row {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.light-control button {
+  width: 100px;
+  height: 40px;
+  font-size: 14px;
+}
+
+.light-control input[type="color"] {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.light-control input[type="range"] {
+  width: 80%;
+  height: 20px;
+  accent-color: var(--primary-color);
+}
+.light-control .device-name {
+  font-size: 20px;
+  font-weight: bold;
+
+  color: white;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.control-item {
+  transition: background-color 0.3s ease;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.thermostat-control .device-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.thermostat-control .current-temperature {
+  font-size: 14px;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.thermostat-control input[type="number"] {
+  width: 60px;
+  text-align: center;
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.thermostat-control button {
+  width: 100px;
+  font-size: 14px;
+  height: 40px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.thermostat-control button:hover {
+  background-color: var(--primary-color);
+}
+
+.devices-wrapper {
+  position: relative;
+  padding: 20px 20px 20px 20px;
+  margin: 60px auto;
+  width: 90%;
+  border: 4px solid var(--primary-color);
+  border-radius: 12px;
+  background-color: var(--background);
+}
+
+.devices-title {
+  position: absolute;
+  top: -18px;
+  left: 15%;
+  transform: translateX(-50%);
+  background-color: var(--background);
+  color: var(--primary-color);
+  padding: 0 16px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.dynamic-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.control-item {
+  border: 2px solid var(--primary-color);
+  padding: 15px;
+  border-radius: 10px;
+  background-color: (rgba255, 255, 255, 0.1);
+  text-align: center;
+  flex: 0 1 calc(33.33% - 40px);
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+#loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #121212ee;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: sans-serif;
+}
+
+.loading-content {
+  text-align: center;
+}
+
+.spinner {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 4px solid #ffffff40;
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  height: 400px;
+  aspect-ratio: 4;
+  padding: 10px;
+  border-radius: 80%;
+
+  box-sizing: border-box;
+  position: relative;
+  mask: conic-gradient(#000 0 0) content-box exclude, conic-gradient(#000 0 0);
+  filter: blur(12px);
+}
+.loader:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(#0000 35%, var(--primary-color), #0000 65%);
+  animation: l1 1.5s linear infinite;
+}
+@keyframes l1 {
+  to {
+    rotate: 1turn;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.modal {
+  background: var(--background);
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 70vh;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.scene-creator {
+  margin-top: 30px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #f8f8f8;
+}
+
+.scene-action-block {
+  margin: 10px 0;
+  display: flex;
+  gap: 10px;
+}
+.scene-action-block {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f3f3f3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.scene-action-block button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.slot-section {
+  margin-bottom: 16px;
+}
+
+.grammar-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.grammar-row label {
+  width: 15vh;
+  text-align: right;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+input {
+  flex: 1;
+  padding: 6px 2px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.bulb-icon {
+  font-size: 30px;
+  transition: color 0.3s ease, opacity 0.3s ease;
+  margin-right: 10px;
+}

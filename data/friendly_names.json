@@ -1,0 +1,72 @@
+{
+    "light.aqara_night_light": {
+        "friendly_names": [
+            "Aqara Night Light",
+            "AqaraNight Light"
+        ]
+    },
+    "light.panel_light": {
+        "friendly_names": [
+            "stropni světlo",
+            "moje světlo",
+            "Stropní světlo",
+            "stropný světlo",
+            "stropní světlo"
+        ]
+    },
+    "light.plzen_stul": {
+        "friendly_names": [
+            "plzen stul",
+            "noční světlo",
+            "stůl",
+            "lompicku",
+            "plzni",
+            "stul",
+            "plzen",
+            "plzeň",
+            "lampičku",
+            "lampičky",
+            "lampička"
+        ]
+    },
+    "light.security_camera_wifi_indicator_light": {
+        "friendly_names": [
+            "Kamera",
+            "Security camera (WiFi) Indicator light"
+        ]
+    },
+    "light.stul": {
+        "friendly_names": [
+            "stůl ",
+            "s43tůl",
+            "stůl",
+            "3stůl"
+        ]
+    },
+    "climate.obyvak_radiator": {
+        "friendly_names": [
+            "Obyvak Radiator"
+        ]
+    },
+    "climate.martina_radiator": {
+        "friendly_names": [
+            "Martina Radiator"
+        ]
+    },
+    "climate.josef_radiator": {
+        "friendly_names": [
+            "Josef Radiator"
+        ]
+    },
+    "light.aqara_night_light_light": {
+        "friendly_names": [
+            "Aqara Night Light Light"
+        ]
+    },
+    "climate.plzen_radiator": {
+        "friendly_names": [
+            "ložnici",
+            "ložnice"
+        ]
+    }
+}

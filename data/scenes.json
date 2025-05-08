@@ -1,0 +1,131 @@
+{
+  "výchozí": {
+    "actions": [
+      {
+        "type": "control_light",
+        "entity_id": "light.aqara_night_light",
+        "action": "off"
+      },
+      {
+        "type": "set_temperature",
+        "entity_id": "climate.obyvak_radiator",
+        "temperature": 5
+      },
+      {
+        "type": "set_temperature",
+        "entity_id": "climate.martina_radiator",
+        "temperature": 5
+      },
+      {
+        "type": "set_temperature",
+        "entity_id": "climate.josef_radiator",
+        "temperature": 5
+      },
+      {
+        "type": "control_light",
+        "entity_id": "light.panel_light",
+        "action": "off"
+      },
+      {
+        "type": "control_light",
+        "entity_id": "light.plzen_stul",
+        "action": "off"
+      },
+      {
+        "type": "control_light",
+        "entity_id": "light.stul",
+        "action": "off"
+      }
+    ]
+  },
+  "kino": {
+    "actions": [
+      {
+        "type": "control_light",
+        "entity_id": "light.panel_light",
+        "action": "on",
+        "brightness": 30,
+        "color": "warmwhite"
+      },
+      {
+        "type": "control_light",
+        "entity_id": "light.stul",
+        "action": "off"
+      }
+    ]
+  },
+  "spanek": {
+    "actions": [
+      {
+        "type": "set_temperature",
+        "entity_id": "climate.josef_radiator",
+        "temperature": 18
+      },
+      {
+        "type": "control_light",
+        "entity_id": "light.panel_light",
+        "action": "off"
+      }
+    ]
+  },
+  "jakub": {
+    "actions": [
+      {
+        "type": "control_light",
+        "entity_id": "light.aqara_night_light",
+        "action": "on",
+        "brightness": 255,
+        "color": "white"
+      },
+      {
+        "type": "control_light",
+        "entity_id": "light.panel_light",
+        "action": "on",
+        "brightness": 255,
+        "color": "white"
+      },
+      {
+        "type": "control_light",
+        "entity_id": "light.plzen_stul",
+        "action": "on",
+        "brightness": 255,
+        "color": "white"
+      }
+    ]
+  },
+  "matěj": {
+    "actions": [
+      {
+        "type": "control_light",
+        "entity_id": "light.aqara_night_light",
+        "action": "on",
+        "brightness": 69,
+        "color": "red"
+      },
+      {
+        "type": "control_light",
+        "entity_id": "light.panel_light",
+        "action": "on",
+        "brightness": 69,
+        "color": "red"
+      },
+      {
+        "type": "control_light",
+        "entity_id": "light.plzen_stul",
+        "action": "on",
+        "brightness": 69,
+        "color": "red"
+      },
+      {
+        "type": "set_temperature",
+        "entity_id": "climate.plzen_radiator",
+        "temperature": 30
+      },
+      {
+        "type": "set_temperature",
+        "entity_id": "climate.josef_radiator",
+        "temperature": 30
+      }
+    ]
+  }
+}

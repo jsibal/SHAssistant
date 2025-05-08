@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Domácí Automatizace</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="icon" href="data:;base64,=" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a class="brand">Domácí Automatizace</a>
+      <ul>
+        <li>
+          <a class="nava" href="#" onclick="requestGrammar()">Gramatika</a>
+        </li>
+        <li><a class="nava" href="#" onclick="requestSettings()">Aliasy</a></li>
+        <li>
+          <a class="nava" href="#" onclick="openSceneModal()">Vytvořit scénu</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main id="content">
+      <div class="chat-window-container">
+        <div class="control-buttons">
+          <div class="top-row-buttons">
+            <button class="recog" onclick="toggleMicrophone()">
+              <i id="microphone-icon" class="fas fa-microphone-slash"></i>
+            </button>
+            <button id="toggle-tts" onclick="toggleTTS()">
+              <i class="fas fa-volume-mute"></i>
+            </button>
+          </div>
+          <button id="dialog-toggle" onclick="toggleDialog()">
+            Stop dialog
+          </button>
+        </div>
+
+        <div class="chat-window">
+          <div class="chat-header">Chatovací okno</div>
+          <div class="chat-messages" id="chatMessages">
+            <!-- Zprávy -->
+          </div>
+          <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Napište zprávu..." />
+            <button
+              onclick="processTextInput(document.getElementById('chatInput').value)"
+            >
+              Odeslat
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="controls_point">
+        <!-- Dynamicky generované ovládací prvky -->
+      </div>
+      <div id="scenes"></div>
+
+      <details>
+        <summary>Log</summary>
+        <div id="log"></div>
+      </details>
+
+      <div id="doc" class="dynamic-container"></div>
+      <audio id="audioout"></audio>
+
+      <div id="loadingOverlay">
+        <div class="loading-content">
+          <span class="spinner"></span>
+          <p>Načítání aplikace…</p>
+        </div>
+      </div>
+      <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+      <script src="https://speechcloud.kky.zcu.cz:9444/speechcloud-3.0.js"></script>
+      <script src="SC_script.js"></script>
+      <script src="script.js"></script>
+    </main>
+  </body>
+</html>
