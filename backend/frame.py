@@ -1,4 +1,8 @@
 class LightControlFrame:
+    """
+    Frame for controlling lights (on/off, brightness, color, target).
+    """
+
     def __init__(self):
         self.action = None
         self.device = None
@@ -7,6 +11,9 @@ class LightControlFrame:
         self._history = []
 
     def update(self, result: dict):
+        """
+        Updates the frame with new slot values from the SLU result.
+        """
         if "action" in result and not self.action:
             self.action = result["action"]
             self._history.append('action')
@@ -24,6 +31,10 @@ class LightControlFrame:
             self._history.append('brightness')
 
     def missing_slots(self):
+        """
+        Returns a list of required slots that are still missing.
+        """
+
         missing = []
         if not self.action:
             missing.append("action")
@@ -37,6 +48,10 @@ class LightControlFrame:
         return self.action is not None and self.device is not None
 
     def undo_last(self):
+        """
+        Undoes the last slot assignment, if any.
+        """
+
         if not self._history:
             return False
 
@@ -55,17 +70,28 @@ class LightControlFrame:
         return True
 
     def __str__(self):
+        """
+        Returns a string representation of the current frame state.
+        """
+
         return f"[Light] {self.action or '?'} světlo  barva {self.color or '?'} jas {self.brightness or '?'} v '{self.device or '?'}'"
 
 
 
 class TemperatureControlFrame:
+    """
+    Frame for setting temperature on climate devices.
+    """
+
     def __init__(self):
         self.temperature = None
         self.device = None  # entity_id zařízení (např. "climate.obyvak")
         self._history = []
 
     def update(self, result: dict):
+        """
+        Updates the frame with new slot values from the SLU result.
+        """
         if "temperature" in result and not self.temperature:
             self.temperature = result["temperature"]
             self._history.append("temperature")
@@ -74,6 +100,9 @@ class TemperatureControlFrame:
             self._history.append("device")
 
     def undo_last(self):
+        """
+        Undoes the last slot assignment, if any.
+        """
         if not self._history:
             return False
         last = self._history.pop()
@@ -85,6 +114,9 @@ class TemperatureControlFrame:
         return self.temperature is not None and self.device is not None
 
     def missing_slots(self):
+        """
+        Returns a list of required slots that are still missing.
+        """
         missing = []
         if not self.temperature:
             missing.append("temperature")
@@ -93,16 +125,27 @@ class TemperatureControlFrame:
         return missing
 
     def __str__(self):
+        """
+        Returns a string representation of the current frame state.
+        """
         return f"[Temp] Nastavit teplotu na {self.temperature}°C v '{self.device or '?'}'"
 
 
 class QueryFrame:
+    """
+    Frame for answering queries about devices (e.g., temperature, state).
+    """
+
     def __init__(self):
         self.query_type = None
         self.device = None  # light_entity nebo climate_entity
         self._history = []
 
     def update(self, result: dict):
+        """
+        Updates the frame with new slot values from the SLU result.
+        """
+
         if "query" in result and not self.query_type:
             self.query_type = result["query"]
             self._history.append("query_type")
@@ -111,6 +154,9 @@ class QueryFrame:
             self._history.append("device")
 
     def undo_last(self):
+        """
+        Undoes the last slot assignment, if any.
+        """
         if not self._history:
             return False
         last = self._history.pop()
@@ -122,6 +168,9 @@ class QueryFrame:
         return self.query_type is not None and self.device is not None
 
     def missing_slots(self):
+        """
+        Returns a list of required slots that are still missing.
+        """
         missing = []
         if not self.query_type:
             missing.append("query_type")
@@ -130,19 +179,33 @@ class QueryFrame:
         return missing
 
     def __str__(self):
+        """
+        Returns a string representation of the current frame state.
+        """
         return f"[Query] Zjistit '{self.query_type or '?'}' pro '{self.device or '?'}'"
 
 class SceneFrame:
+    """
+    Frame for activating a scene by name.
+    """
+
     def __init__(self):
         self.scene = None
         self._history = []
 
     def update(self, result: dict):
+        """
+        Updates the frame with new slot values from the SLU result.
+        """
+
         if "scene" in result and not self.scene:
             self.scene = result["scene"]
             self._history.append("scene")
 
     def missing_slots(self):
+        """
+        Returns a list of required slots that are still missing.
+        """
         return ["scene"] if not self.scene else []
 
     @property
@@ -150,6 +213,9 @@ class SceneFrame:
         return self.scene is not None
 
     def undo_last(self):
+        """
+        Undoes the last slot assignment, if any.
+        """
         if not self._history:
             return False
         last = self._history.pop()
@@ -159,6 +225,61 @@ class SceneFrame:
         return False
 
     def __str__(self):
+        """
+        Returns a string representation of the current frame state.
+        """
         return f"[Scene] {self.scene or '?'}"
 
 
+
+class SwitchControlFrame:
+    """
+    Frame for controlling smart switches (on/off).
+    """
+
+    def __init__(self):
+        self.action = None  #
+        self.device = None  
+        self._history = []
+
+    def update(self, result: dict):
+        """
+        Updates the frame with new slot values from the SLU result.
+        """
+        if "action" in result and not self.action:
+            self.action = result["action"]
+            self._history.append("action")
+        if "switch_entity" in result and not self.device:
+            self.device = result["switch_entity"]
+            self._history.append("device")
+
+    def undo_last(self):
+        """
+        Undoes the last slot assignment, if any.
+        """
+        if not self._history:
+            return False
+        last = self._history.pop()
+        setattr(self, last, None)
+        return True
+
+    @property
+    def complete(self):
+        return self.action is not None and self.device is not None
+
+    def missing_slots(self):
+        """
+        Returns a list of required slots that are still missing.
+        """
+        missing = []
+        if not self.action:
+            missing.append("action")
+        if not self.device:
+            missing.append("device")
+        return missing
+
+    def __str__(self):
+        """
+        Returns a string representation of the current frame state.
+        """
+        return f"[Switch] {self.action or '?'} zásuvku '{self.device or '?'}'"

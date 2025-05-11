@@ -7,39 +7,39 @@
     },
     "light.panel_light": {
         "friendly_names": [
-            "stropni světlo",
-            "moje světlo",
-            "Stropní světlo",
             "stropný světlo",
-            "stropní světlo"
+            "moje světlo",
+            "stropní světlo",
+            "Stropní světlo",
+            "stropni světlo"
         ]
     },
     "light.plzen_stul": {
         "friendly_names": [
+            "plzeň",
+            "stul",
+            "lampičku",
             "plzen stul",
-            "noční světlo",
             "stůl",
             "lompicku",
-            "plzni",
-            "stul",
+            "noční světlo",
             "plzen",
-            "plzeň",
-            "lampičku",
-            "lampičky",
-            "lampička"
+            "plzni",
+            "lampička",
+            "lampičky"
         ]
     },
     "light.security_camera_wifi_indicator_light": {
         "friendly_names": [
-            "Kamera",
-            "Security camera (WiFi) Indicator light"
+            "Security camera (WiFi) Indicator light",
+            "Kamera"
         ]
     },
     "light.stul": {
         "friendly_names": [
+            "stůl",
             "stůl ",
             "s43tůl",
-            "stůl",
             "3stůl"
         ]
     },
@@ -67,6 +67,20 @@
         "friendly_names": [
             "ložnici",
             "ložnice"
+        ]
+    },
+    "switch.zasuvka_zasuvka_1": {
+        "friendly_names": [
+            "zásuvka",
+            "zasuvka",
+            "větrák",
+            "zásuvka Zásuvka 1"
+        ]
+    },
+    "switch.zasuvka_usb_1": {
+        "friendly_names": [
+            "zásuvka USB 1",
+            "zasuvka_usb"
         ]
     }
 }

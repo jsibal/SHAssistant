@@ -168,7 +168,8 @@
     ],
     "state": ["je zapnuto", "je zapnuté", "funguje", "svítí", "je vypnuto"],
     "brightness": ["jak moc svítí", "intenzita", "jak silné", "jaký je jas"],
-    "color": ["jakou má barvu", "jaká je barva", "barevné světlo", "jak svítí"]
+    "color": ["jakou má barvu", "jaká je barva", "barevné světlo", "jak svítí"],
+    "switch": ["je zapnutá", "je zapnuta"]
   },
   "TARGET": {
     "query": ["zeptat"],
@@ -202,6 +203,14 @@
       "scéna",
       "přepni režim",
       "aktivuj scénu"
+    ],
+    "switch": [
+      "zasuvka",
+      "zásuvka",
+      "zásuvku",
+      "zasuvku",
+      "napájení",
+      "napajeni"
     ]
   }
 }

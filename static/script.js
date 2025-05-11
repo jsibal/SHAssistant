@@ -66,7 +66,7 @@ function runAfterDelay(callback, delay) {
 function toggleLight(entityId) {
   sendControlCommand("toggle_light", { entity_id: entityId });
   runAfterDelay(() => {
-    speechCloud.dm_send_message({ data: { type: "get_light_states" } });
+    speechCloud.dm_send_message({ data: { type: "get_device_states" } });
   }, 1000);
 }
 
@@ -129,7 +129,7 @@ function changeLightColor(event, entityId) {
     color: colorName,
   });
   runAfterDelay(() => {
-    speechCloud.dm_send_message({ data: { type: "get_light_states" } });
+    speechCloud.dm_send_message({ data: { type: "get_device_states" } });
   }, 1000);
 }
 
@@ -141,7 +141,7 @@ function setBrightness(event, entityId) {
     brightness: brightness,
   });
   runAfterDelay(() => {
-    speechCloud.dm_send_message({ data: { type: "get_light_states" } });
+    speechCloud.dm_send_message({ data: { type: "get_device_states" } });
   }, 1000);
 }
 
@@ -190,7 +190,13 @@ function loadControls(entities) {
     const entityId = entity.entity_id;
     const friendlyName = entity.attributes?.friendly_name || entityId;
 
-    if (entityId.startsWith("light.") || entityId.startsWith("climate.")) {
+    if (
+      (entityId.startsWith("light.") ||
+        entityId.startsWith("climate.") ||
+        entityId.startsWith("switch.")) &&
+      !entityId.includes("detsky_zamek") &&
+      !entityId.includes("security_camera")
+    ) {
       const controlItem = document.createElement("div");
       controlItem.className = "control-item";
 
@@ -217,11 +223,22 @@ function loadControls(entities) {
         controlItem.innerHTML = `
           <div class="device-name">${friendlyName}</div>
           <div class="current-temperature" id="${temperatureElementId}">Načítání...</div>
-          <input type="number" id="${inputElementId}" min="10" max="30" value="20" step="0.5" />
+          <input type="number" id="${inputElementId}" min="5" max="35" value="20" step="0.5" />
           <button onclick="setTemperature('${entityId}', '${inputElementId}')">Nastavit</button>
         `;
 
         thermostatIds.push({ entityId, elementId: temperatureElementId });
+      } else if (entityId.startsWith("switch.")) {
+        const iconId = `icon_${entityId.replace(/\./g, "_")}`;
+
+        controlItem.innerHTML = `
+      <div class="device-name">${friendlyName}</div>
+      <div class="top-row">
+      -
+      </div>
+              <i id="${iconId}" class="fas fa-plug bulb-icon"></i>
+        <button onclick="toggleSwitch('${entityId}')">Zap/Vyp</button>
+    `;
       }
 
       container.appendChild(controlItem);
@@ -231,12 +248,30 @@ function loadControls(entities) {
   // Pravidelná aktualizace teploty
   setInterval(updateAllTemperatures, 60000);
   setInterval(() => {
-    speechCloud.dm_send_message({ data: { type: "get_light_states" } });
+    speechCloud.dm_send_message({ data: { type: "get_device_states" } });
   }, 120000); // každé 2min
   speechCloud.dm_send_message({
     data: { type: "get_scenes" },
   });
   document.getElementById("loadingOverlay").style.display = "none";
+}
+
+function toggleSwitch(entityId) {
+  sendControlCommand("toggle_switch", { entity_id: entityId });
+  runAfterDelay(() => {
+    speechCloud.dm_send_message({ data: { type: "get_device_states" } });
+  }, 1000);
+}
+
+function updateSwitchIcon(entity) {
+  const icon = document.getElementById(
+    `icon_${entity.entity_id.replace(/\./g, "_")}`
+  );
+  if (!icon) return;
+
+  const isOn = entity.state === "on";
+  icon.style.color = isOn ? "limegreen" : "gray";
+  icon.style.opacity = isOn ? 1.0 : 0.3;
 }
 
 function updateLightIcon(entity) {
@@ -255,9 +290,18 @@ function updateLightIcon(entity) {
 }
 
 function updateAllLights(entities) {
-  entities
-    .filter((e) => e.entity_id.startsWith("light."))
-    .forEach(updateLightIcon);
+  entities.forEach((entity) => {
+    const id = entity.entity_id;
+    if (id.startsWith("light.")) {
+      updateLightIcon(entity);
+    } else if (
+      id.startsWith("switch.") &&
+      !id.includes("detsky_zamek") &&
+      !id.includes("security_camera")
+    ) {
+      updateSwitchIcon(entity);
+    }
+  });
 }
 
 function updateAllTemperatures() {

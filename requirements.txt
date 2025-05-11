@@ -1,5 +1,6 @@
-dotenv             0.9.9
-event-emitter      0.3.0
-eventemitter       0.2.0
-PyEventEmitter     1.0.5
-tornado
+dotenv==0.9.9
+event-emitter==0.3.0
+eventemitter==0.2.0
+PyEventEmitter==1.0.5
+tornado==6.4.1
+requests==2.32.3

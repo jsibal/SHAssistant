@@ -1,15 +1,15 @@
-from tornado import websocket, web, ioloop, httpserver
-from tornado.log import gen_log
 import asyncio
 import concurrent.futures
-from contextlib import asynccontextmanager
-from event_emitter.events import EventEmitter
 import json
 import datetime as dt
 import sys
+import re
 from pprint import pprint, pformat
 from collections import Counter, namedtuple, defaultdict
-import re
+from contextlib import asynccontextmanager
+from event_emitter.events import EventEmitter
+from tornado import websocket, web, ioloop, httpserver
+from tornado.log import gen_log
 
 ABNF_INLINE = "abnf-inline"
 ESGF_INLINE = "esgf-inline"
