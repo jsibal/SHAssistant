@@ -4,8 +4,6 @@ Multimodální osobní asistent pro automatizaci domácnosti
 
 Tento projekt implementuje webovou aplikaci propojenou s dialogovým manažerem využívajícím službu [SpeechCloud](https://speechcloud.kky.zcu.cz/) a API [Home Assistant](https://www.home-assistant.io/) pro ovládání chytré domácnosti.
 
-![Ukázka UI](static/img/ui_screenshot.png)
-
 ## Funkce
 
 - Podpora hlasu, textu i tlačítek
