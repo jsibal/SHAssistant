@@ -58,17 +58,21 @@ async def handle_temperature(assistant, result, text_input=False):
         if text_input:
             assistant.pending_frame_update_handler = handle_temperature
             return
-
-        result = await assistant.recognize_and_wait_for_asr_result(timeout=assistant.TIMEOUT)
-        if result:
-            frame.update(slu(result["word_1best"]))
-            assistant.pending_frame_update_frame = frame
-            await assistant.display(str(frame))
         else:
-            msg = "Zkuste to znovu."
-            await assistant.send_message({"type": "chat-dm", "data": msg})
-            if assistant.ttsEnabled:
-                await assistant.synthesize_and_wait(msg)
+            if assistant.stt:
+                await self.send_message({"type": "mic_on", "data": None}) 
+                result = await self.recognize_and_wait_for_asr_result(timeout=assistant.TIMEOUT)
+                await self.send_message({"type": "mic_off", "data": None}) 
+                await self.send_message({"type": "thinking", "data": "thinking"})
+            if result:
+                frame.update(slu(assistant,result["word_1best"]))
+                assistant.pending_frame_update_frame = frame
+                await assistant.display(str(frame))
+            else:
+                msg = "Zkuste to znovu."
+                await assistant.send_message({"type": "chat-dm", "data": msg})
+                if assistant.ttsEnabled:
+                    await assistant.synthesize_and_wait(msg)
 
     assistant.ha.set_temperature(frame.device, float(frame.temperature))
     message = f"Teplota v {frame.device} nastavena."

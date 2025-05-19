@@ -382,7 +382,11 @@ $(document).ready(function () {
       document.getElementById(
         message.data.data.elementId
       ).textContent = `Aktuální: ${message.data.data.current_temperature}°C`;
+    } else if (message.data.type === "thinking") {
+      showBotThinking();
     } else if (message.data.type === "chat-dm") {
+      const thinkingMsg = document.getElementById("bot-thinking");
+      if (thinkingMsg) thinkingMsg.remove();
       sendMessage(message.data.data, "bot");
     } else if (message.data.type === "settings") {
       handleSettingsMessage(message.data.data);
@@ -394,6 +398,12 @@ $(document).ready(function () {
       renderSceneButtons(message.data.data);
     } else if (message.data.type === "grammar") {
       handleGrammarMessage(message.data.data);
+    } else if (message.data.type === "mic_on") {
+      document.querySelector(".recog").classList.add("active");
+    } else if (message.data.type === "mic_off") {
+      document.querySelector(".recog").classList.remove("active");
+    } else if (message.data.type === "HA-error") {
+      haError();
     } else {
       console.error("Neplatná zpráva:", message);
     }

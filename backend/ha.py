@@ -18,6 +18,21 @@ class HA:
             "Content-Type": "application/json",
         }
 
+    def is_alive(self):
+        """
+        Checks whether the Home Assistant API is operational using the /api/config endpoint.
+
+        :return: True if the API responds with status 200, otherwise False.
+        """
+
+        url = f"{self.base_url}/config"
+        try:
+            response = requests.get(url, headers=self.headers, timeout=5)
+            return response.status_code == 200
+        except requests.RequestException as e:
+            print(f"Chyba při kontrole API: {e}")
+            return False
+
     def _call_service(self, domain: str, service: str, data: dict):
         """
         Sends a POST request to a Home Assistant service endpoint.

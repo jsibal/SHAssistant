@@ -553,6 +553,45 @@ input {
 
 .bulb-icon {
   font-size: 30px;
-  transition: color 0.3s ease, opacity 0.3s ease;
+  transition: color 0.5s ease, opacity 0.5s ease;
   margin-right: 10px;
+}
+
+.recog.active {
+  background-color: #d32f2f;
+}
+
+.recog.active i {
+  animation: pulse-icon 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse-icon {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.typing-dots::after {
+  content: "";
+  display: inline-block;
+  animation: dots 1.2s steps(3, end) infinite;
+}
+
+@keyframes dots {
+  0% {
+    content: "";
+  }
+  33% {
+    content: ".";
+  }
+  66% {
+    content: "..";
+  }
+  100% {
+    content: "...";
+  }
 }

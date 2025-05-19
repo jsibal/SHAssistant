@@ -32,6 +32,22 @@ function sendMessage(messageText, sender) {
   messages.scrollTop = messages.scrollHeight;
 }
 
+function showBotThinking() {
+  const messages = document.getElementById("chatMessages");
+
+  const messageWrapper = document.createElement("div");
+  messageWrapper.classList.add("chat-message", "bot");
+  messageWrapper.id = "bot-thinking";
+
+  const bubble = document.createElement("div");
+  bubble.classList.add("chat-bubble", "typing-dots");
+  bubble.innerText = "Bot: ";
+
+  messageWrapper.appendChild(bubble);
+  messages.appendChild(messageWrapper);
+  messages.scrollTop = messages.scrollHeight;
+}
+
 function processTextInput(messageText) {
   speechCloud.dm_send_message({
     type: "chat_input",
@@ -806,4 +822,16 @@ function saveGrammar() {
   });
 
   document.getElementById("grammarOverlay")?.remove();
+}
+
+function haError() {
+  const loadingOverlay = document.getElementById("loadingOverlay");
+  if (loadingOverlay) {
+    loadingOverlay.innerHTML = `
+             <div class="loading-content">
+                <p style="font-size: 20px;"> Home Assistant API není dostupné </p>
+                <p style="font-size: 16px;">Prosím kontaktujte správce systému na e-mailu: <b>jsibal@students.zcu.cz</b></p>
+            </div>
+        `;
+  }
 }

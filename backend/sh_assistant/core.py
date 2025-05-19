@@ -26,17 +26,19 @@ class SHAssistant(Dialog):
         self.running = True
         self.ttsEnabled = False
         self.stt = False
-        self.TIMEOUT = os.getenv("TIMEOUT")
+        self.TIMEOUT = int(os.getenv("TIMEOUT"))
         self.pending_frame_update_frame = None
         self.pending_frame_update_handler = None
         self.history = []
         self.ha = HA(url=os.getenv("HA_URL"),token=os.getenv("HA_TOKEN"))
-
-        initialize_slu(self)
-        await self.dialog_loop()
-        await self.synthesize_and_wait("Děkuji, končím.")
-        await self.display_history()
-
+        if self.ha.is_alive():
+            initialize_slu(self)
+            await self.dialog_loop()
+            await self.synthesize_and_wait("Děkuji, končím.")
+            await self.display_history()
+        else:
+            await self.send_message({"type": "HA-error", "data":"HA-error"})
+    
     async def dialog_loop(self):
         """
         Main loop waiting for speech input and handling continuous recognition if enabled.
@@ -47,12 +49,16 @@ class SHAssistant(Dialog):
 
         self.running = True
         while self.running:
-            result = await self.recognize_and_wait_for_asr_result(timeout=5.)
+            await asyncio.sleep(1)
             while self.stt and self.running:
                 await self.send_message({"type": "chat-dm", "data": "Řekněte příkaz."})
                 if self.ttsEnabled:
                     await self.synthesize_and_wait("Řekněte příkaz.")
-                result = await self.recognize_and_wait_for_asr_result(timeout=5.)
+                    
+                await self.send_message({"type": "mic_on", "data": None}) 
+                result = await self.recognize_and_wait_for_asr_result(timeout=self.TIMEOUT)
+                await self.send_message({"type": "mic_off", "data": None}) 
+                await self.send_message({"type": "thinking", "data": "thinking"}) 
                 if result:
                     await self.handle_slu_result(result["word_1best"])
                 else:
@@ -118,7 +124,7 @@ class SHAssistant(Dialog):
         handlers = {
             "toggle_light": lambda: (self.ha.toggle_light(data["entity_id"])),
             "set_light_color": lambda: (self.ha.set_light_color(data["entity_id"],data["color"])),
-            "set_brightness": lambda:(self.ha.control_light("on", data["entity_id"])),
+            "set_brightness": lambda:(self.ha.control_light("on", data["entity_id"],data["brightness"])),
             "set_temperature": lambda: self.ha.set_temperature(data["entity_id"], data["temperature"]),
             "control_light": (lambda: self.ha.control_light(data.get("action", "on"), data["entity_id"], data.get("brightness"), data.get("color"))),
             "get_temperature": lambda: asyncio.create_task(

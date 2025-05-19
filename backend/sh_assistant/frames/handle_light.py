@@ -63,9 +63,14 @@ async def handle_light(assistant, result, text_input=False):
                 print("Čekám na další textový vstup")
                 return  # nevracíme handle_light, jen čekáme na text
             else:
-                result = await assistant.recognize_and_wait_for_asr_result(timeout=5.)
+                if assistant.stt:
+                    await assistant.send_message({"type": "mic_on", "data": None}) 
+                    result = await assistant.recognize_and_wait_for_asr_result(timeout=assistant.TIMEOUT)
+                    await assistant.send_message({"type": "mic_off", "data": None}) 
+                    await assistant.send_message({"type": "thinking", "data": "thinking"})
+
                 if result:
-                    result = slu(result["word_1best"])
+                    result = slu(assistant,result["word_1best"])
                     frame.update(result)
                     assistant.pending_frame_update_frame = frame
                     await assistant.display(str(frame))

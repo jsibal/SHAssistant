@@ -7,40 +7,33 @@
     },
     "light.panel_light": {
         "friendly_names": [
-            "stropný světlo",
             "moje světlo",
+            "stropný světlo",
             "stropní světlo",
-            "Stropní světlo",
-            "stropni světlo"
+            "stropni světlo",
+            "Stropní světlo"
         ]
     },
     "light.plzen_stul": {
         "friendly_names": [
             "plzeň",
-            "stul",
-            "lampičku",
-            "plzen stul",
-            "stůl",
-            "lompicku",
             "noční světlo",
-            "plzen",
-            "plzni",
             "lampička",
-            "lampičky"
+            "lompicku",
+            "plzni",
+            "lampičky",
+            "Lampička",
+            "stůl",
+            "stul",
+            "plzen",
+            "lampičku",
+            "plzen stul"
         ]
     },
     "light.security_camera_wifi_indicator_light": {
         "friendly_names": [
-            "Security camera (WiFi) Indicator light",
-            "Kamera"
-        ]
-    },
-    "light.stul": {
-        "friendly_names": [
-            "stůl",
-            "stůl ",
-            "s43tůl",
-            "3stůl"
+            "Kamera",
+            "Security camera (WiFi) Indicator light"
         ]
     },
     "climate.obyvak_radiator": {
@@ -55,6 +48,7 @@
     },
     "climate.josef_radiator": {
         "friendly_names": [
+            "Ložnice",
             "Josef Radiator"
         ]
     },
@@ -73,14 +67,21 @@
         "friendly_names": [
             "zásuvka",
             "zasuvka",
+            "zásuvka Zásuvka 1",
             "větrák",
-            "zásuvka Zásuvka 1"
+            "zásuvku",
+            "Zásuvka"
         ]
     },
     "switch.zasuvka_usb_1": {
         "friendly_names": [
             "zásuvka USB 1",
             "zasuvka_usb"
+        ]
+    },
+    "climate.loznice": {
+        "friendly_names": [
+            "ložnice"
         ]
     }
 }
